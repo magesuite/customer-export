@@ -2,29 +2,22 @@
 
 namespace MageSuite\CustomerExport\Services\File;
 
-use Magento\Framework\Exception\LocalizedException;
+use \Magento\Framework\Exception\LocalizedException;
 
 class WriterFactory
 {
     /**
-     * @var array
+     * @var Writer[] $writers
      */
-    private $classMappings = [];
+    private $writers = [];
+
 
     /**
-     * @var \Magento\Framework\ObjectManagerInterface
+     * @param array $writers
      */
-    private $objectManager;
-
-    /**
-     * ParserFactory constructor.
-     * @param array $classMappings
-     * @param \Magento\Framework\ObjectManagerInterface $objectManager
-     */
-    public function __construct(array $classMappings = [], \Magento\Framework\ObjectManagerInterface $objectManager)
+    public function __construct(array $writers = [])
     {
-        $this->classMappings = $classMappings;
-        $this->objectManager = $objectManager;
+        $this->writers = $writers;
     }
 
     /**
@@ -34,10 +27,14 @@ class WriterFactory
      */
     public function create($format)
     {
-        if (!array_key_exists($format, $this->classMappings)) {
-            throw new LocalizedException(sprintf('Cannot found writer for %s format', $format));
+        if (!array_key_exists($format, $this->writers)) {
+            throw new LocalizedException(
+                new \Magento\Framework\Phrase(
+                    sprintf('Cannot found writer for %s format', $format)
+                )
+            );
         }
-        return $this->classMappings[$format];
+        return $this->writers[$format];
     }
 
 }

@@ -2,21 +2,20 @@
 
 namespace MageSuite\CustomerExport\Services\Export;
 
-use MageSuite\CustomerExport\Services\File\Adapter\XMLWriter;
 use MageSuite\CustomerExport\Services\File\WriterFactory;
-use MageSuite\CustomerExport\Services\Parser\ParserFactory;
+use MageSuite\CustomerExport\Services\Filter\FilterStrategy;
 
 class Exporter
 {
     /**
-     * @var ParserFactory $parserFactory
-     */
-    protected $parserFactory;
-
-    /**
      * @var WriterFactory $writerFactory
      */
     protected $writerFactory;
+
+    /**
+     * @var FilterStrategy $filterStrategy
+     */
+    protected $filterStrategy;
 
     /**
      * @var \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory
@@ -29,20 +28,20 @@ class Exporter
     protected $scopeConfig;
 
     /**
-     * Exporter constructor.
-     * @param ParserFactory $parserFactory
      * @param WriterFactory $writerFactory
+     * @param FilterStrategy $filterStrategy
      * @param \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory $customerFactory
+     * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        ParserFactory $parserFactory,
         WriterFactory $writerFactory,
+        FilterStrategy $filterStrategy,
         \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory $customerFactory,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     )
     {
-        $this->parserFactory = $parserFactory;
         $this->writerFactory = $writerFactory;
+        $this->filterStrategy = $filterStrategy;
         $this->customerFactory = $customerFactory;
         $this->scopeConfig = $scopeConfig;
     }
@@ -52,14 +51,11 @@ class Exporter
      */
     public function prepareCustomersCollection()
     {
-        $customers = $this->customerFactory->create();
+        $customersCollection = $this->customerFactory->create();
 
-        $date = new \DateTime('-1 day');
-        $date = $date->format('Y-m-d H:i:s');
+        $this->filterStrategy->filterCustomerCollection($customersCollection);
 
-        $customers->addFieldToFilter('updated_at', ['gteq' => $date]);
-
-        return $customers;
+        return $customersCollection;
     }
 
     public function export($format = null, $destination = null, $fileName = null)
@@ -72,13 +68,11 @@ class Exporter
             $destination = 'file';
         }
 
-        $customers = $this->prepareCustomersCollection();
-
-        $parser = $this->parserFactory->create($format);
         $writer = $this->writerFactory->create($destination);
 
-        $data = $parser->parse($customers);
-        $writer->write($data, $fileName);
+        $customersColletion = $this->prepareCustomersCollection();
+
+        $writer->write($customersColletion, $format, $fileName);
     }
 
     public function executeCron()

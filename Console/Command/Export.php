@@ -2,18 +2,17 @@
 
 namespace MageSuite\CustomerExport\Console\Command;
 
+use MageSuite\CustomerExport\Services\Export\ExporterFactory;
 use Symfony\Component\Console\Input\InputOption;
 
 class Export extends \Symfony\Component\Console\Command\Command
 {
     /**
-     * @var \MageSuite\CustomerExport\Services\Export\ExporterFactory $exporterFactory
+     * @var ExporterFactory $exporterFactory
      */
     private $exporterFactory;
 
-    public function __construct(
-        \MageSuite\CustomerExport\Services\Export\ExporterFactory $exporterFactory
-    )
+    public function __construct(ExporterFactory $exporterFactory)
     {
         parent::__construct();
 

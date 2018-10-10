@@ -21,7 +21,7 @@
                 <field id="export_file_type" translate="label" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Export File Type</label>
                     <comment>Rxported File Type</comment>
-                    <source_model>MageSuite\CustomerExport\Model\Config\Source\Export\Type</source_model>
+                    <source_model>MageSuite\CustomerExport\Model\Config\Source\Export\ConversionType</source_model>
                 </field>
                 <field id="export_filename" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Export Filename</label>

@@ -1,8 +1,10 @@
 <?php
 
-namespace MageSuite\CustomerExport\Services\File\Adapter;
+namespace MageSuite\CustomerExport\Services\File\Writer;
 
-abstract class AbstractAdapter
+use MageSuite\CustomerExport\Services\Converter\ConverterFactory;
+
+abstract class AbstractWriter
 {
     const CONFIG_FTP_UPLOAD = 'ftp_upload';
 
@@ -21,6 +23,11 @@ abstract class AbstractAdapter
     const CONFIG_FILENAME = 'export_filename';
 
     /**
+     * @var ConverterFactory $converterFactory
+     */
+    protected $converterFactory;
+
+    /**
      * @var \Magento\Framework\App\Filesystem\DirectoryList $directoryList
      */
     protected $directoryList;
@@ -36,15 +43,17 @@ abstract class AbstractAdapter
     protected $config = [];
 
     /**
-     * XMLWriter constructor.
+     * @param ConverterFactory $converterFactory
      * @param \Magento\Framework\App\Filesystem\DirectoryList $directoryList
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
+        ConverterFactory $converterFactory,
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     )
     {
+        $this->converterFactory = $converterFactory;
         $this->directoryList = $directoryList;
         $this->scopeConfig = $scopeConfig;
         $this->config = $this->scopeConfig->getValue('customerexport/automatic');

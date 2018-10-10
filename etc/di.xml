@@ -7,19 +7,20 @@
             </argument>
         </arguments>
     </type>
-    <type name="MageSuite\CustomerExport\Services\Parser\ParserFactory">
+    <type name="MageSuite\CustomerExport\Services\Converter\ConverterFactory">
         <arguments>
-            <argument name="classMappings" xsi:type="array">
-                <item name="xml" xsi:type="object">MageSuite\CustomerExport\Services\Parser\XmlParser</item>
+            <argument name="converters" xsi:type="array">
+                <item name="xml" xsi:type="object">MageSuite\CustomerExport\Services\Converter\XmlConverter</item>
             </argument>
         </arguments>
     </type>
     <type name="MageSuite\CustomerExport\Services\File\WriterFactory">
         <arguments>
-            <argument name="classMappings" xsi:type="array">
-                <item name="file" xsi:type="object">MageSuite\CustomerExport\Services\File\Adapter\FileAdapter</item>
-                <item name="ftp" xsi:type="object">MageSuite\CustomerExport\Services\File\Adapter\FTPAdapter</item>
+            <argument name="writers" xsi:type="array">
+                <item name="file" xsi:type="object">MageSuite\CustomerExport\Services\File\Writer\FileWriter</item>
+                <item name="ftp" xsi:type="object">MageSuite\CustomerExport\Services\File\Writer\FTPWriter</item>
             </argument>
         </arguments>
     </type>
+    <preference for="MageSuite\CustomerExport\Services\Filter\FilterStrategy" type="MageSuite\CustomerExport\Services\Filter\AllCustomers"/>
 </config>
