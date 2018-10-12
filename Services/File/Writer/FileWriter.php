@@ -6,6 +6,8 @@ use MageSuite\CustomerExport\Services\File\Writer;
 
 class FileWriter extends AbstractWriter implements Writer
 {
+    const CHUNK_SIZE = 1000;
+
     /**
      * @param string|null $fileName
      * @return string
@@ -28,14 +30,13 @@ class FileWriter extends AbstractWriter implements Writer
     /**
      * @inheritdoc
      */
-    public function write($customerCollection, $format, $fileName = null)
+    public function write(\Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection, $format, $fileName = null)
     {
         $filePath = $this->prepareWritePath($fileName);
 
         $converter = $this->converterFactory->create($format);
 
-        $chunkSize = 1000;
-        $customerCollection->setPageSize($chunkSize);
+        $customerCollection->setPageSize(self::CHUNK_SIZE);
         $chunks = $customerCollection->getLastPageNumber();
 
         $data = $converter->startConversion();
@@ -45,7 +46,7 @@ class FileWriter extends AbstractWriter implements Writer
         for ($i = 1; $i <= $chunks; $i++) {
             $customerCollection->setCurPage($i);
             $customerCollection->load();
-            $data = $converter->convert($customerCollection);
+            $data = $converter->convertBatch($customerCollection);
             file_put_contents($filePath, $data, FILE_APPEND);
             $customerCollection->clear();
         }

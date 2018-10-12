@@ -8,6 +8,20 @@ use FtpClient\FtpClient;
 
 class FTPWriter extends AbstractWriter implements Writer
 {
+    const CONFIG_FTP_UPLOAD = 'ftp_upload';
+
+    const CONFIG_FTP_PASSIVE = 'ftp_passive';
+
+    const CONFIG_FTP_SSL = 'ftp_ssl';
+
+    const CONFIG_FTP_HOST = 'ftp_host';
+
+    const CONFIG_FTP_LOGIN = 'ftp_login';
+
+    const CONFIG_FTP_PASSWORD = 'ftp_password';
+
+    const CONFIG_FTP_PATH = 'ftp_path';
+
     /**
      * @var FtpClient $ftpClient
      */
@@ -43,39 +57,40 @@ class FTPWriter extends AbstractWriter implements Writer
      * @inheritdoc
      * @throws \FtpClient\FtpException
      */
-    public function write($customerCollection, $format, $fileName = null)
+    public function write(\Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection, $format, $fileName = null)
     {
-        $filePath = $this->fileWriter->prepareWritePath($fileName);
+        $temporaryFilePath = $this->fileWriter->prepareWritePath($fileName);
 
         $this->fileWriter->write($customerCollection, $format, $fileName);
 
-        if (!$this->config[AbstractWriter::CONFIG_FTP_UPLOAD]) {
+        if (!$this->config[self::CONFIG_FTP_UPLOAD]) {
             return;
         }
 
         $this->ftpClient->connect(
-            $this->config[AbstractWriter::CONFIG_FTP_HOST],
-            (bool) $this->config[AbstractWriter::CONFIG_FTP_SSL]
+            $this->config[self::CONFIG_FTP_HOST],
+            (bool) $this->config[self::CONFIG_FTP_SSL]
         );
 
         $this->ftpClient->login(
-            $this->config[AbstractWriter::CONFIG_FTP_LOGIN],
-            $this->config[AbstractWriter::CONFIG_FTP_PASSWORD]
+            $this->config[self::CONFIG_FTP_LOGIN],
+            $this->config[self::CONFIG_FTP_PASSWORD]
         );
 
-        if ($this->config[AbstractWriter::CONFIG_FTP_PASSIVE]) {
+        if ($this->config[self::CONFIG_FTP_PASSIVE]) {
             $this->ftpClient->pasv(true);
         }
 
-        $remoteFilePath = $this->config[AbstractWriter::CONFIG_FTP_PATH] . $this->config[AbstractWriter::CONFIG_FILENAME];
+        $remoteFilePath = $this->config[self::CONFIG_FTP_PATH] . $this->config[self::CONFIG_FILENAME];
 
         $this->ftpClient->put(
             $remoteFilePath,
-            $filePath,
+            $temporaryFilePath,
             FTP_ASCII
         );
 
         $this->ftpClient->close();
+        unlink($temporaryFilePath);
     }
 
 }

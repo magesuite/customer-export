@@ -2,8 +2,6 @@
 
 namespace MageSuite\CustomerExport\Services\Converter;
 
-use \Magento\Customer\Model\ResourceModel\Customer\Collection;
-
 interface Converter
 {
     /**
@@ -15,7 +13,7 @@ interface Converter
      * @param Customer $customer
      * @return string
      */
-    public function convert(Collection $customerCollection);
+    public function convertBatch(\Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection);
 
     /**
      * @return string

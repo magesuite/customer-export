@@ -2,9 +2,6 @@
 
 namespace MageSuite\CustomerExport\Services\Converter;
 
-use Magento\Customer\Model\Customer;
-use Magento\Customer\Model\ResourceModel\Customer\Collection;
-
 class XmlConverter implements Converter
 {
     private $rootNodes = [
@@ -37,7 +34,7 @@ class XmlConverter implements Converter
     /**
      * @inheritdoc
      */
-    public function convert(Collection $customerCollection)
+    public function convertBatch(\Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection)
     {
         foreach ($customerCollection as $customer) {
             $this->xmlWritter->startElement('Customer');
@@ -63,10 +60,10 @@ class XmlConverter implements Converter
                         $this->xmlWritter->endElement();
                     } catch (\Exception $exception) {}
                 }
-                $this->xmlWritter->endElement(); // End of Address element
+                $this->xmlWritter->endElement();
             }
-            $this->xmlWritter->endElement(); // End of Addresses element
-            $this->xmlWritter->endElement(); // End of Customer element
+            $this->xmlWritter->endElement();
+            $this->xmlWritter->endElement();
         }
 
         return $this->xmlWritter->flush();
@@ -77,7 +74,7 @@ class XmlConverter implements Converter
      */
     public function endConversion()
     {
-        $this->xmlWritter->endElement(); // End of Customers element
+        $this->xmlWritter->endElement();
 
         return $this->xmlWritter->flush();
     }

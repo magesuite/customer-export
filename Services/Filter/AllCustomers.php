@@ -2,14 +2,12 @@
 
 namespace MageSuite\CustomerExport\Services\Filter;
 
-use \Magento\Customer\Model\ResourceModel\Customer\Collection;
-
 class AllCustomers implements FilterStrategy
 {
     /**
      * @inheritdoc
      */
-    public function filterCustomerCollection(Collection $customersCollection)
+    public function filterCustomerCollection(\Magento\Customer\Model\ResourceModel\Customer\Collection $customersCollection)
     {
         return $customersCollection;
     }

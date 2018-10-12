@@ -2,14 +2,12 @@
 
 namespace MageSuite\CustomerExport\Services\File;
 
-use \Magento\Customer\Model\ResourceModel\Customer\Collection;
-
 interface Writer
 {
     /**
-     * @param Collection $customerCollection
+     * @param \Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection
      * @param string $format
      * @param string|null $fileName
      */
-    public function write($customerCollection, $format, $fileName = null);
+    public function write(\Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection, $format, $fileName = null);
 }

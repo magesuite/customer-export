@@ -51,11 +51,11 @@ class Exporter
      */
     public function prepareCustomersCollection()
     {
-        $customersCollection = $this->customerFactory->create();
+        $customerCollection = $this->customerFactory->create();
 
-        $this->filterStrategy->filterCustomerCollection($customersCollection);
+        $this->filterStrategy->filterCustomerCollection($customerCollection);
 
-        return $customersCollection;
+        return $customerCollection;
     }
 
     public function export($format = null, $destination = null, $fileName = null)
@@ -70,9 +70,9 @@ class Exporter
 
         $writer = $this->writerFactory->create($destination);
 
-        $customersColletion = $this->prepareCustomersCollection();
+        $customerColletion = $this->prepareCustomersCollection();
 
-        $writer->write($customersColletion, $format, $fileName);
+        $writer->write($customerColletion, $format, $fileName);
     }
 
     public function executeCron()

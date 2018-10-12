@@ -2,8 +2,6 @@
 
 namespace MageSuite\CustomerExport\Services\Converter;
 
-use Magento\Framework\Exception\LocalizedException;
-
 class ConverterFactory
 {
     /**
@@ -27,7 +25,7 @@ class ConverterFactory
     public function create($format)
     {
         if (!array_key_exists($format, $this->converters)) {
-            throw new LocalizedException(
+            throw new \Magento\Framework\Exception\LocalizedException\LocalizedException(
                 new \Magento\Framework\Phrase(
                     sprintf('Cannot found converter for %s format', $format)
                 )

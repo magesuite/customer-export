@@ -6,20 +6,6 @@ use MageSuite\CustomerExport\Services\Converter\ConverterFactory;
 
 abstract class AbstractWriter
 {
-    const CONFIG_FTP_UPLOAD = 'ftp_upload';
-
-    const CONFIG_FTP_PASSIVE = 'ftp_passive';
-
-    const CONFIG_FTP_SSL = 'ftp_ssl';
-
-    const CONFIG_FTP_HOST = 'ftp_host';
-
-    const CONFIG_FTP_LOGIN = 'ftp_login';
-
-    const CONFIG_FTP_PASSWORD = 'ftp_password';
-
-    const CONFIG_FTP_PATH = 'ftp_path';
-
     const CONFIG_FILENAME = 'export_filename';
 
     /**

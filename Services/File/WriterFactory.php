@@ -2,8 +2,6 @@
 
 namespace MageSuite\CustomerExport\Services\File;
 
-use \Magento\Framework\Exception\LocalizedException;
-
 class WriterFactory
 {
     /**
@@ -28,7 +26,7 @@ class WriterFactory
     public function create($format)
     {
         if (!array_key_exists($format, $this->writers)) {
-            throw new LocalizedException(
+            throw new \Magento\Framework\Exception\LocalizedException(
                 new \Magento\Framework\Phrase(
                     sprintf('Cannot found writer for %s format', $format)
                 )
