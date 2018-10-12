@@ -21,9 +21,9 @@ class Export extends \Symfony\Component\Console\Command\Command
         $this
             ->setName('export:customers')
             ->setDescription('Export new/updated customers data.')
-            ->addOption('format', null, Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL, 'Output file format')
-            ->addOption('destination', null, Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL, 'Output destination (file, ftp)')
-            ->addOption('file-name', null, Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL, 'Output file name');
+            ->addOption('format', null, \Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL, 'Output file format')
+            ->addOption('destination', null, \Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL, 'Output destination (file, ftp)')
+            ->addOption('file-name', null, \Symfony\Component\Console\Input\InputOption::VALUE_OPTIONAL, 'Output file name');
     }
 
     protected function execute(
