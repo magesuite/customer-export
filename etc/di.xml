@@ -1,0 +1,26 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="export_customer_ftp" xsi:type="object">MageSuite\CustomerExport\Console\Command\Export</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageSuite\CustomerExport\Services\Converter\ConverterFactory">
+        <arguments>
+            <argument name="converters" xsi:type="array">
+                <item name="xml" xsi:type="object">MageSuite\CustomerExport\Services\Converter\XmlConverter</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="MageSuite\CustomerExport\Services\File\WriterFactory">
+        <arguments>
+            <argument name="writers" xsi:type="array">
+                <item name="file" xsi:type="object">MageSuite\CustomerExport\Services\File\Writer\FileWriter</item>
+                <item name="ftp" xsi:type="object">MageSuite\CustomerExport\Services\File\Writer\FTPWriter</item>
+            </argument>
+        </arguments>
+    </type>
+    <preference for="MageSuite\CustomerExport\Services\Filter\FilterStrategy" type="MageSuite\CustomerExport\Services\Filter\AllCustomers"/>
+</config>

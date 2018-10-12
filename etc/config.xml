@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <customerexport>
+            <automatic>
+                <active>0</active>
+                <ftp_upload>0</ftp_upload>
+                <ftp_passive>0</ftp_passive>
+                <ftp_ssl>1</ftp_ssl>
+                <cron_schedule>0 18 * * *</cron_schedule>
+                <export_filename>customer_export.xml</export_filename>
+                <export_file_type>xml</export_file_type>
+            </automatic>
+        </customerexport>
+    </default>
+</config>
