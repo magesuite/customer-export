@@ -2,7 +2,7 @@
 
 namespace MageSuite\CustomerExport\Services\Filter;
 
-class AllCustomers implements FilterStrategy
+class AllCustomers implements \MageSuite\CustomerExport\Services\Filter\FilterStrategy
 {
     /**
      * @inheritdoc

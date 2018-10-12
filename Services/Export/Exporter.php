@@ -2,18 +2,15 @@
 
 namespace MageSuite\CustomerExport\Services\Export;
 
-use MageSuite\CustomerExport\Services\File\WriterFactory;
-use MageSuite\CustomerExport\Services\Filter\FilterStrategy;
-
 class Exporter
 {
     /**
-     * @var WriterFactory $writerFactory
+     * @var \MageSuite\CustomerExport\Services\File\WriterFactory $writerFactory
      */
     protected $writerFactory;
 
     /**
-     * @var FilterStrategy $filterStrategy
+     * @var \MageSuite\CustomerExport\Services\Filter\FilterStrategy $filterStrategy
      */
     protected $filterStrategy;
 
@@ -28,14 +25,14 @@ class Exporter
     protected $scopeConfig;
 
     /**
-     * @param WriterFactory $writerFactory
-     * @param FilterStrategy $filterStrategy
+     * @param \MageSuite\CustomerExport\Services\File\WriterFactory $writerFactory
+     * @param \MageSuite\CustomerExport\Services\Filter\FilterStrategy $filterStrategy
      * @param \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory $customerFactory
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        WriterFactory $writerFactory,
-        FilterStrategy $filterStrategy,
+        \MageSuite\CustomerExport\Services\File\WriterFactory $writerFactory,
+        \MageSuite\CustomerExport\Services\Filter\FilterStrategy $filterStrategy,
         \Magento\Customer\Model\ResourceModel\Customer\CollectionFactory $customerFactory,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     )

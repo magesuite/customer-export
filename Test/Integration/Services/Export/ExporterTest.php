@@ -2,11 +2,7 @@
 
 namespace MageSuite\CustomerExport\Test\Integration\Services\Export;
 
-use MageSuite\CustomerExport\Services\Export\Exporter;
-use MageSuite\CustomerExport\Services\File\Writer\FileWriter;
-use PHPUnit\Framework\TestCase;
-
-class ExporterTest extends TestCase
+class ExporterTest extends PHPUnit\Framework\TestCase
 {
     /**
      * @var Exporter $exporter
@@ -27,8 +23,8 @@ class ExporterTest extends TestCase
     {
         $objectManager = \Magento\TestFramework\ObjectManager::getInstance();
 
-        $this->exporter = $objectManager->create(Exporter::class);
-        $this->fileWriter = $objectManager->create(FileWriter::class);
+        $this->exporter = $objectManager->create(\MageSuite\CustomerExport\Services\Export\Exporter::class);
+        $this->fileWriter = $objectManager->create(\MageSuite\CustomerExport\Services\File\Writer\FileWriter::class);
         $this->customerRepository = $objectManager->create(\Magento\Customer\Model\ResourceModel\CustomerRepository::class);
     }
 

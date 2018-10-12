@@ -2,11 +2,7 @@
 
 namespace MageSuite\CustomerExport\Services\File\Writer;
 
-use MageSuite\CustomerExport\Services\Converter\ConverterFactory;
-use MageSuite\CustomerExport\Services\File\Writer;
-use FtpClient\FtpClient;
-
-class FTPWriter extends AbstractWriter implements Writer
+class FTPWriter extends \MageSuite\CustomerExport\Services\File\Writer\AbstractWriter implements \MageSuite\CustomerExport\Services\File\Writer
 {
     const CONFIG_FTP_UPLOAD = 'ftp_upload';
 
@@ -23,26 +19,26 @@ class FTPWriter extends AbstractWriter implements Writer
     const CONFIG_FTP_PATH = 'ftp_path';
 
     /**
-     * @var FtpClient $ftpClient
+     * @var \FtpClient\FtpClient $ftpClient
      */
     private $ftpClient;
 
     /**
-     * @var FileWriter $fileWriter
+     * @var \MageSuite\CustomerExport\Services\File\Writer\FileWriter $fileWriter
      */
     private $fileWriter;
 
     /**
-     * @param ConverterFactory $converterFactory
-     * @param FtpClient $ftpClient
-     * @param FileWriter $fileWriter
+     * @param \MageSuite\CustomerExport\Services\Converter\ConverterFactory $converterFactory
+     * @param \FtpClient\FtpClient $ftpClient
+     * @param \MageSuite\CustomerExport\Services\File\Writer\FileWriter $fileWriter
      * @param \Magento\Framework\App\Filesystem\DirectoryList $directoryList
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        ConverterFactory $converterFactory,
-        FtpClient $ftpClient,
-        FileWriter $fileWriter,
+        \MageSuite\CustomerExport\Services\Converter\ConverterFactory $converterFactory,
+        \FtpClient\FtpClient $ftpClient,
+        \MageSuite\CustomerExport\Services\File\Writer\FileWriter $fileWriter,
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     )

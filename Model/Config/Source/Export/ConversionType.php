@@ -2,19 +2,17 @@
 
 namespace MageSuite\CustomerExport\Model\Config\Source\Export;
 
-use MageSuite\CustomerExport\Services\Converter\ConverterFactory;
-
 class ConversionType
 {
     /**
-     * @var ConverterFactory $converterFactory
+     * @var \MageSuite\CustomerExport\Services\Converter\ConverterFactory $converterFactory
      */
     private $converterFactory;
 
     /**
-     * @param ConverterFactory $parserFactory
+     * @param MageSuite\CustomerExport\Services\Converter\ConverterFactory $parserFactory
      */
-    public function __construct(ConverterFactory $converterFactory)
+    public function __construct(\MageSuite\CustomerExport\Services\Converter\ConverterFactory $converterFactory)
     {
         $this->converterFactory = $converterFactory;
     }

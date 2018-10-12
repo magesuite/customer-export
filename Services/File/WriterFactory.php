@@ -5,7 +5,7 @@ namespace MageSuite\CustomerExport\Services\File;
 class WriterFactory
 {
     /**
-     * @var Writer[] $writers
+     * @var \MageSuite\CustomerExport\Services\File\Writer[] $writers
      */
     private $writers = [];
 
@@ -20,8 +20,8 @@ class WriterFactory
 
     /**
      * @param string $format
-     * @throws LocalizedException
-     * @return Writer
+     * @throws \Magento\Framework\Exception\LocalizedException
+     * @return \MageSuite\CustomerExport\Services\File\Writer
      */
     public function create($format)
     {

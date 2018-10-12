@@ -2,9 +2,7 @@
 
 namespace MageSuite\CustomerExport\Services\File\Writer;
 
-use MageSuite\CustomerExport\Services\File\Writer;
-
-class FileWriter extends AbstractWriter implements Writer
+class FileWriter extends \MageSuite\CustomerExport\Services\File\Writer\AbstractWriter implements \MageSuite\CustomerExport\Services\File\Writer
 {
     const CHUNK_SIZE = 1000;
 
@@ -15,7 +13,7 @@ class FileWriter extends AbstractWriter implements Writer
     public function prepareWritePath($fileName = null)
     {
         if (!$fileName) {
-            $fileName = $this->config[AbstractWriter::CONFIG_FILENAME];
+            $fileName = $this->config[\MageSuite\CustomerExport\Services\File\Writer\AbstractWriter::CONFIG_FILENAME];
         }
 
         $filePath = sprintf('%s/importexport/', $this->directoryList->getPath(\Magento\Framework\App\Filesystem\DirectoryList::VAR_DIR));

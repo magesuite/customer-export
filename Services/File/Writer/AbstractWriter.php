@@ -2,14 +2,12 @@
 
 namespace MageSuite\CustomerExport\Services\File\Writer;
 
-use MageSuite\CustomerExport\Services\Converter\ConverterFactory;
-
 abstract class AbstractWriter
 {
     const CONFIG_FILENAME = 'export_filename';
 
     /**
-     * @var ConverterFactory $converterFactory
+     * @var \MageSuite\CustomerExport\Services\Converter\ConverterFactory $converterFactory
      */
     protected $converterFactory;
 
@@ -29,12 +27,12 @@ abstract class AbstractWriter
     protected $config = [];
 
     /**
-     * @param ConverterFactory $converterFactory
+     * @param \MageSuite\CustomerExport\Services\Converter\ConverterFactory $converterFactory
      * @param \Magento\Framework\App\Filesystem\DirectoryList $directoryList
      * @param \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
      */
     public function __construct(
-        ConverterFactory $converterFactory,
+        \MageSuite\CustomerExport\Services\Converter\ConverterFactory $converterFactory,
         \Magento\Framework\App\Filesystem\DirectoryList $directoryList,
         \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
     )

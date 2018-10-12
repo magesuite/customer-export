@@ -5,7 +5,7 @@ namespace MageSuite\CustomerExport\Services\Converter;
 class ConverterFactory
 {
     /**
-     * @var Converter[] $converters
+     * @var \MageSuite\CustomerExport\Services\Converter\Converter[] $converters
      */
     private $converters = [];
 
@@ -19,8 +19,8 @@ class ConverterFactory
 
     /**
      * @param string $format
-     * @throws LocalizedException
-     * @return Converter
+     * @throws \Magento\Framework\Exception\LocalizedException\LocalizedException
+     * @return \MageSuite\CustomerExport\Services\Converter\Converter
      */
     public function create($format)
     {
@@ -35,7 +35,7 @@ class ConverterFactory
     }
 
     /**
-     * @return Converter[]
+     * @return \MageSuite\CustomerExport\Services\Converter\Converter[]
      */
     public function getConverters()
     {

@@ -10,7 +10,7 @@ interface Converter
     public function startConversion();
 
     /**
-     * @param Customer $customer
+     * @param \Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection
      * @return string
      */
     public function convertBatch(\Magento\Customer\Model\ResourceModel\Customer\Collection $customerCollection);
