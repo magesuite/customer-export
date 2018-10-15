@@ -2,7 +2,7 @@
 
 namespace MageSuite\CustomerExport\Test\Integration\Services\Export;
 
-class ExporterTest extends PHPUnit\Framework\TestCase
+class ExporterTest extends \PHPUnit\Framework\TestCase
 {
     /**
      * @var Exporter $exporter
