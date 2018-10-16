@@ -62,7 +62,8 @@ class Exporter
         }
 
         if ($destination === null) {
-            $destination = 'file';
+            $ftpActive = $this->scopeConfig->getValue('customerexport/automatic/ftp_upload');
+            $destination = $ftpActive === '1' ? 'ftp' : 'file';
         }
 
         $writer = $this->writerFactory->create($destination);
