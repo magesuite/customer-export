@@ -4,7 +4,7 @@
         <customerexport>
             <automatic>
                 <active>0</active>
-                <ftp_upload>0</ftp_upload>
+                <write_destination>file</write_destination>
                 <ftp_passive>0</ftp_passive>
                 <ftp_ssl>1</ftp_ssl>
                 <cron_schedule>0 18 * * *</cron_schedule>
