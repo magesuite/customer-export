@@ -9,30 +9,47 @@ class WriterFactory
      */
     private $writers = [];
 
+    /**
+     * @var \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig
+     */
+    private $scopeConfig;
+
 
     /**
      * @param array $writers
      */
-    public function __construct(array $writers = [])
+    public function __construct(array $writers = [], \Magento\Framework\App\Config\ScopeConfigInterface $scopeConfig)
     {
         $this->writers = $writers;
+        $this->scopeConfig = $scopeConfig;
     }
 
     /**
-     * @param string $format
+     * @param string|null $destination
      * @throws \Magento\Framework\Exception\LocalizedException
      * @return \MageSuite\CustomerExport\Services\File\Writer
      */
-    public function create($format)
+    public function create($destination = null)
     {
-        if (!array_key_exists($format, $this->writers)) {
+        if ($destination === null) {
+            $destination = $this->scopeConfig->getValue('customerexport/automatic/write_destination');
+        }
+
+        if (!array_key_exists($destination, $this->writers)) {
             throw new \Magento\Framework\Exception\LocalizedException(
                 new \Magento\Framework\Phrase(
-                    sprintf('Cannot found writer for %s format', $format)
+                    sprintf('Cannot found writer for %s', $destination)
                 )
             );
         }
-        return $this->writers[$format];
+        return $this->writers[$destination];
     }
 
+    /**
+     * @return \MageSuite\CustomerExport\Services\File\Writer[]
+     */
+    public function getWriters()
+    {
+        return $this->writers;
+    }
 }

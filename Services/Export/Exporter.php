@@ -61,22 +61,10 @@ class Exporter
             $format = $this->scopeConfig->getValue('customerexport/automatic/export_file_type');
         }
 
-        if ($destination === null) {
-            $destination = 'file';
-        }
-
         $writer = $this->writerFactory->create($destination);
 
         $customerColletion = $this->prepareCustomersCollection();
 
         $writer->write($customerColletion, $format, $fileName);
-    }
-
-    public function executeCron()
-    {
-        if (!$this->scopeConfig->getValue('customerexport/automatic/active')) {
-            return;
-        }
-        $this->export();
     }
 }
