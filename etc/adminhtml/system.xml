@@ -20,7 +20,7 @@
                 </field>
                 <field id="export_file_type" translate="label" type="select" sortOrder="45" showInDefault="1" showInWebsite="1" showInStore="1">
                     <label>Export File Type</label>
-                    <comment>Rxported File Type</comment>
+                    <comment>Exported File Type</comment>
                     <source_model>MageSuite\CustomerExport\Model\Config\Source\Export\ConversionType</source_model>
                 </field>
                 <field id="export_filename" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
@@ -49,7 +49,7 @@
                     <label>Login</label>
                     <depends><field id='write_destination'>ftp</field></depends>
                 </field>
-                <field id='ftp_password' translate='label' type='password' sortOrder="110" showInDefault='1'>
+                <field id='ftp_password' translate='label' type='password' sortOrder="110" showInWebsite="1" showInDefault='1'>
                     <label>Password</label>
                     <depends><field id='write_destination'>ftp</field></depends>
                 </field>
