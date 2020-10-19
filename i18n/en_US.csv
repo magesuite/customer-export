@@ -1,0 +1,14 @@
+MageSuite,MageSuite
+"Customer Export","Customer Export"
+"Automatic export","Automatic export"
+"Enable export by cron","Enable export by cron"
+"Cron Schedule","Cron Schedule"
+"Export File Type","Export File Type"
+"Export Filename","Export Filename"
+"Write Destination","Write Destination"
+Host,Host
+"Use SSL","Use SSL"
+Passive,Passive
+Login,Login
+Password,Password
+"Remote path","Remote path"
