@@ -39,5 +39,3 @@ class Export extends \Symfony\Component\Console\Command\Command
     }
 
 }
-
-
